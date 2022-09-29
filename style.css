@@ -1,0 +1,39 @@
+body {
+
+background: linear-gradient(rgb(255, 255, 255), rgb(34, 29, 100));
+
+}
+
+h1 {
+
+color: snow;
+background-color: rgba(0, 0, 128, 0.74);
+
+}
+
+#show_sketch {
+
+float: right;
+
+}
+
+canvas {
+
+border: 5px solid rgb(247, 185, 240);
+border-radius: 20px;
+animation-name: example;
+animation-duration: 4s;
+margin-top: 50px;
+animation-iteration-count: infinite;
+
+}
+
+@keyframes example{
+    from{box-shadow: 1px 1px 38px seagreen;}
+    to{box-shadow: 1px 1px 38px rgba(143, 227, 218, 0.849);}
+}
+
+p {
+    padding-top: 2px;
+    font-size: 20px;
+}
