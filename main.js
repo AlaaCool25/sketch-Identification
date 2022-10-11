@@ -1,40 +1,42 @@
 function setup() {
-    canvas = createCanvas(220, 180);
+    
+    canvas = createCanvas(300,300);
     canvas.center();
-    background("white");
-    canvas.mouseReleased(classifyCanvas);
-    synth = window.speechSynthesis;
-}
+    video = createCapture(VIDEO);
+    video.hide();
+    classifier = ml5.imageClassifier('MobileNet',modelLoaded);
 
-function clearCanvas() {
-    background("white");
-}
+ }
 
-function preload() {
-    classifier = ml5.imageClassifier('DoodleNet');
-}
+ function modelLoaded() {
+    
+    console.log('model loaded');
 
-function draw() {
-    strokeWeight(13);
-    stroke(0);
-    if (mouseIsPressed) {
-        line(pmouseX,pmouseY,mouseX,mouseY);
+ }
+
+ function draw() {
+
+    image(video,0,0,300,300);
+    classifier.classify(video,gotResult);
+ }
+
+ var previous_result = '';
+
+ function gotResult(error,results) {
+    if (error) {
+        console.log(error);
     }
-}
+     else {
+        if ((results[0].confidence > 0.5) && (previous_result != results[0].label)) {
+            console.log(results);
+            previous_result = results[0].label;
+            var synth = window.SpeechSynthesis;
+            speak_data = 'Object detected is - ' + results[0].label;
+            var utterThis = new SpeechSynthesisUtterance(speak_data);
+            synth.speak(utterThis);
 
-function classifyCanvas() {
-    classifier.classify(canvas,gotResult);
-}
-
-function gotResult(error,results){
-if (error){
-    console.error(error);
-}
-else {
-    console.log(results);
-    document.getElementById("label").innerHTML = 'label: ' + results[0].label;
-    document.getElementById("confidence").innerHTML = 'confidence: ' + Math.round(results[0].confidence*100) +"%";
-    utterThis = new SpeechSynthesisUtterance(results[0].label);
-    synth.speak(utterThis);
-}
-}
+            document.getElementById("result_object_name").innerHTML = results[0].label;
+            document.getElementById("result_object_accuracy").innerHTML = results[0].confidence.toFixed(3);
+        }
+    }
+ }

@@ -1,39 +1,49 @@
-body {
-
-background: linear-gradient(rgb(255, 255, 255), rgb(34, 29, 100));
-
+body
+{
+    font-family: 'Special Elite', cursive;
+    background-color: plum;
 }
 
-h1 {
-
-color: snow;
-background-color: rgba(0, 0, 128, 0.74);
-
+.header_div
+{
+    background-color: mediumpurple;
+    color: deepskyblue;
 }
 
-#show_sketch {
-
-float: right;
-
+.header_div img
+{
+    width: 100px;
 }
 
-canvas {
-
-border: 5px solid rgb(247, 185, 240);
-border-radius: 20px;
-animation-name: example;
-animation-duration: 4s;
-margin-top: 50px;
-animation-iteration-count: infinite;
-
+.main_div
+{
+    background-color: orchid;
+    padding: 10px;
+    margin-top: 15px;
+    border: 3px solid white;
 }
 
-@keyframes example{
-    from{box-shadow: 1px 1px 38px seagreen;}
-    to{box-shadow: 1px 1px 38px rgba(143, 227, 218, 0.849);}
+.main_div label
+{
+    background: rgb(162, 160, 221);
+    padding: 10px;
+    margin-bottom: 0px;
+    box-shadow: 5px 5px 18px mediumpurple;
+    width: 310px;
 }
 
-p {
-    padding-top: 2px;
-    font-size: 20px;
+#camera
+{
+    border: 2px solid white;
+    width: 310px;
+    box-shadow: 5px 5px 18px mediumpurple;
+    height: 300px;
+}
+
+.main_div button
+{
+    font-size: 16px;
+    width: 310px;
+    box-shadow: 5px 5px 18px white;
+    border: 1px solid;
 }
